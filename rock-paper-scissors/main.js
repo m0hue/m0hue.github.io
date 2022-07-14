@@ -1,7 +1,15 @@
 // Generates random number from 1 - 3 to determine the computer will play
-computerPlay = () => (
-    Math.floor(Math.random() * 3) + 1
-);
+function computerPlay() {
+    let randomNum = Math.floor(Math.random() * 3) + 1
+    
+    if (randomNum = 1) {
+        return 'rock';
+    } else if (randomNum = 2) {
+        return 'paper';
+    } else if (randomNum = 3) {
+        return 'scissors';
+    }
+}
 
 //Takes in both selections and determines which selection is the winner/loser
 function playRound(playerSelection, computerSelection) {
@@ -32,4 +40,4 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-console.log(playRound('rock','scissors'));
+let computerSelection = computerPlay();
