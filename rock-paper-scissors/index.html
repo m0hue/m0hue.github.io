@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="main.js" defer></script>;
         <link rel="stylesheet" href="styles.css">
         <meta lang="en">
         <title>Rock Paper Scissors</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <body>
-        <script src="main.js"></script>
+        <header>
+            <h1 id="title">ROCK PAPER SCISSORS</h1>
+        </header>
+        <h2>Pick a hand</h2>
+        <p id="description">First to 5 wins</p>
+        <div id="scoreboard">
+            <h1 class="playerscore">0</h1>
+            <h1 class="computerscore">0</h1>
+        </div>
+        <div id="scoreboard-text">
+            <p id="player">Player</p>
+            <p id="computer">Computer</p>
+        </div>   
+        <div id="buttons">
+            <button onclick="pickRock()" id="rock">
+                <img src="images/rock.png"></button>
+            <button onclick="pickPaper()" id="paper">
+                <img src="images/paper.png"></button>
+            <button onclick="pickScissors()" id="scissors">
+                <img src="images/scissors.png"></button>
+        </div>
     </body>
 </html>

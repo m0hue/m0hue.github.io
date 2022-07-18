@@ -1,7 +1,11 @@
 let computerSelection;
-let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let userSelect;
+
+const playerScoreText = document.querySelector(".playerscore");
+const computerScoreText = document.querySelector(".computerscore");
+
 
 // Generates random number from 1 - 3 to determine the computer will play
 function computerPlay() {
@@ -16,26 +20,40 @@ function computerPlay() {
     }
 }
 
+//Takes user input from buttons to pick what to play
+function pickRock() {
+    userSelect = 'rock';
+    game() 
+}
+function pickPaper() {
+    userSelect = 'paper';
+    game()
+}
+function pickScissors() {
+    userSelect = 'scissors';
+    game()
+}
+
 //Takes in both selections and determines which selection is the winner/loser
-function playRound(playerSelection, computerSelection) {
+function playRound(userSelect, computerSelection) {
     let result;
 
     //If both inputs are the same, return 'tie' value
-    if (playerSelection === computerSelection) {
+    if (userSelect === computerSelection) {
         result = 'tie';
-    } else if (playerSelection === 'rock') {
+    } else if (userSelect === 'rock') {
         if (computerSelection === 'scissors') {
             result = 'win';
         } else if (computerSelection === 'paper') {
             result = 'lose';
         }
-    } else if (playerSelection === 'paper') {
+    } else if (userSelect === 'paper') {
         if (computerSelection === 'rock') {
             result = 'win';
         } else if (computerSelection === 'scissors') {
             result = 'lose';
         }
-    } else if (playerSelection === 'scissors') {
+    } else if (userSelect === 'scissors') {
         if (computerSelection === 'rock') {
             result = 'lose';
         } else if (computerSelection === 'paper') {
@@ -45,32 +63,31 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-
-
-function playerPlay() {
-    let userSelect = prompt("Rock, Paper, or Scissors?")
-    userSelect = userSelect.toLowerCase();
-
-    if (userSelect==='rock' || userSelect==='paper' || userSelect==='scissors') {
-        return userSelect;
-    } else {
-        return 'Invalid input'
-    }
+function updateText() {
+    playerScoreText.textContent = playerScore;
+    computerScoreText.textContent = computerScore;
 }
 
 function game() {
-    for (let i = 0; playerScore < 5 && computerScore < 5; i++) {
-        computerSelection = computerPlay();
-        playerSelection = playerPlay();
-        let round = playRound(playerSelection,computerSelection);
+    computerSelection = computerPlay();
+    let round = playRound(userSelect,computerSelection);
+    if (playerScore < 5 && computerScore < 5) { 
         if (round==='win') {
             playerScore++;
+            updateText();
         } else if (round==='lose') {
             computerScore++;
+            updateText();
+        } else if (round==='tie') {
+            updateText();
         }
-        console.log(round);
+    } else if (playerScore === 5 || computerScore === 5) {
+        resetGame();
     }
-    console.log(playerScore,computerScore);
 }
 
-game()
+function resetGame() {
+    computerScore = 0;
+    playerScore = 0;
+    updateText();
+}
