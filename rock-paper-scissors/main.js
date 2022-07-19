@@ -3,6 +3,7 @@ let playerScore = 0;
 let computerScore = 0;
 let userSelect;
 
+const roundText = document.querySelector(".round");
 const playerScoreText = document.querySelector(".playerscore");
 const computerScoreText = document.querySelector(".computerscore");
 
@@ -63,9 +64,10 @@ function playRound(userSelect, computerSelection) {
     return result;
 }
 
-function updateText() {
+function updateText(round) {
     playerScoreText.textContent = playerScore;
     computerScoreText.textContent = computerScore;
+    roundText.textContent = round;
 }
 
 function game() {
@@ -74,15 +76,16 @@ function game() {
     if (playerScore < 5 && computerScore < 5) { 
         if (round==='win') {
             playerScore++;
-            updateText();
+            updateText('Winner!');
         } else if (round==='lose') {
             computerScore++;
-            updateText();
+            updateText('Loser!');
         } else if (round==='tie') {
-            updateText();
+            updateText('Tie!');
         }
     } else if (playerScore === 5 || computerScore === 5) {
         resetGame();
+        updateText('Begin!')
     }
 }
 
