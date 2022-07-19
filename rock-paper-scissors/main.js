@@ -64,10 +64,28 @@ function playRound(userSelect, computerSelection) {
     return result;
 }
 
+function animateText(text) {
+    text.animate(
+        [{transform: 'scale(1)'},
+         {transform: 'scale(1.2)'},
+         {transform: 'scale(1)'}],
+         {duration: 500,
+        iterations: 1}
+
+    ) 
+    // text.style.animation = 'resize 1s ease-in-out';
+}
+
 function updateText(round) {
     playerScoreText.textContent = playerScore;
     computerScoreText.textContent = computerScore;
     roundText.textContent = round;
+    animateText(roundText);
+    if (round==='Winner!') {
+        animateText(playerScoreText);
+    } else if (round==='Loser!') {
+        animateText(computerScoreText);
+    }
 }
 
 function game() {
