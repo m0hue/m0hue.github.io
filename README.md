@@ -7,6 +7,9 @@ It may look very small to all you professionals out there,
 
 But to me, all these projects hold a key to my growth
 
-[Rock Paper Scissors](https://m0hue.github.io/rock-paper-scissors/)
-
 Cheers!
+
+-------------------
+
+[Rock Paper Scissors](https://m0hue.github.io/rock-paper-scissors/) :: [Etch-A-Sketch](https://m0hue.github.io/etch-a-sketch/)
+
