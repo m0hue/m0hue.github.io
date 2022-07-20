@@ -111,3 +111,8 @@ footer p {
     margin-left: 30px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.inputs *:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
