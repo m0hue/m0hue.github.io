@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: black solid 1px;
+    width: 400px;
+    height: 400px;
+}
+
+.container div {
+    display: flex;
+    background-color: lightblue;
+}
