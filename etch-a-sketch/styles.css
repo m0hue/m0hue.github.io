@@ -8,6 +8,5 @@
 }
 
 .container div {
-    display: flex;
-    background-color: lightblue;
+    background-color: lightgrey;
 }
