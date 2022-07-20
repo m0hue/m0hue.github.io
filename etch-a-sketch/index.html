@@ -5,11 +5,20 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="container">
-
+        <header>
+            <h1>Etch-A-Sketch</h1>
+        </header>
+        <div class="container" draggable="false">
         </div>
         <p class="gridtext">16 x 16</p>
-        <input class="color" type="color">
-        <input class="slider" type="range" min="4" max="64" value="16" step="4">
+        <div class="inputs">
+            <input class="color" type="color">
+            <input class="slider" type="range" min="4" max="64" value="16" step="4">
+            <button class="clear" type="submit">Clear</button>
+        </div>
+        <footer>
+            <p>Copyright © 2022 m0hue</p>
+            <a href="https://github.com/m0hue/"><img id="icon" class="git-icon" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a>
+            </footer>
     </body>
 </html>

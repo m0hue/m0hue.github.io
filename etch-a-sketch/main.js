@@ -1,14 +1,24 @@
 const container = document.querySelector('.container');
-const slider = document.querySelector('.slider');
+const sliderInput = document.querySelector('.slider');
+const clearButton = document.querySelector('.clear');
 const gridText = document.querySelector('.gridtext');
-let value = slider.value;
+const colorInput = document.querySelector('.color');
 
-slider.onchange = (e) => {
+let mouseDown = false;
+let value = sliderInput.value;
+let color = colorInput.value;
+
+container.addEventListener('mousedown', () => mouseDown=true);
+container.addEventListener('mouseup', () => mouseDown=false);
+container.addEventListener('click', changePixel);
+
+sliderInput.onchange = (e) => {
     changeValue(e.target.value);
     clearGrid();
 }
-slider.onmousemove = (e) => changeValue(e.target.value);
-
+sliderInput.onmousemove = (e) => changeValue(e.target.value);
+clearButton.onclick = clearGrid;
+colorInput.onchange = (e) => color = e.target.value;
 
 function changeValue(newValue) {
     value = newValue;
@@ -27,23 +37,27 @@ function createGrid() {
             div.id = 'pixel';
             styleDivs(div);
             container.appendChild(div);
+            div.addEventListener('mouseenter',changePixel);
         }}
+    changePixel();
 }
 
 function styleDivs(div) {
     div.style.width = `calc(400px/${value})`;
     div.style.height = `calc(400px/${value})`;
+    div.addEventListener('dragstart', (e) => {
+        e.preventDefault()
+      })
+      
+    div.addEventListener('drop', (e) => {
+        e.preventDefault()
+})}
+
+function changePixel(e) {
+    if (mouseDown === true || e.type === 'click') {
+        e.target.style.backgroundColor = `${color}`;
+    }
 }
 
-function changeColor() {
-    const pixelList = container.querySelectorAll('div');
-    pixelList.forEach(element => {
-        if (element.onmousedown && element.onmouseover) {
-            element.style.backgroundColor = black;
-        }
-        console.log(element)
-        
-    });
-}
 
 createGrid()
