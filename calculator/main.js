@@ -1,18 +1,28 @@
-calculator = {
-    operator,
-    input: 1,
+let calculator = {
+    operator: null,
+    answer: null,
+    equation: null,
+    input: 1
 }
 
-let numList = document.querySelectorAll(".numbers > input")
+let equationText = document.querySelector(".screen > .equation");
+let answerText = document.querySelector(".screen > .answer");
+
+let numList = document.querySelectorAll(".numbers > input");
 numList.forEach(
     (num) => {
         num.addEventListener("click", (e) => {
-            if (calculator.firstInput && calculator.operator) {
-                calculator.secondInput ? calculator.secondInput += e.target.value : calculator.secondInput = e.target.value
-            } else {
-                calculator.firstInput ? calculator.firstInput += e.target.value : calculator.firstInput = e.target.value
+            if (calculator.input === 2 && calculator.firstInput) {
+                calculator.secondInput ? calculator.secondInput += e.target.value : calculator.secondInput = e.target.value;
+            } else if (calculator.input === 1) {
+                calculator.firstInput ? calculator.firstInput += e.target.value : calculator.firstInput = e.target.value;
+            } else if (calculator.input === 1 && calculator.operator && !calculator.firstInput) {
+                calculator.firstInput = calculator.answer
             }
-            // calculator.firstInput && calculator.operator ? calculator.secondInput += `${e.target.value}` : calculator.firstInput += `${e.target.value}`
+            
+            calculator.equation = `${calculator.firstInput} ${calculator.operator} ${calculator.secondInput}`;
+            equationText.textContent = calculator.equation;
+
         })}
 )
 
@@ -20,28 +30,41 @@ let operatorList = document.querySelectorAll("#operator");
 operatorList.forEach(
     (operator) => {
         operator.addEventListener("click", (e) => {
-            (e.target.value === "=") ? submitEquation() : (calculator.operator = e.target.value);
+            if (e.target.value === "=") {
+                submitEquation();
+            } else {
+                !calculator.firstInput ? calculator.firstInput = calculator.answer : 0; //takes answer as first input if there is no first input
+                calculator.operator = e.target.value;
+                calculator.input = 2
+            }
         })});
+
+function writeAnswer() {
+    answerText.textContent = calculator.answer 
+}
+
+
+let evaluate = () => {
+    let evaluation = 0;
+    calculator.operator === '+' ? (evaluation = +calculator.firstInput + +calculator.secondInput) :
+    calculator.operator === '-' ? (evaluation = calculator.firstInput - calculator.secondInput) :
+    calculator.operator === 'x' ? (evaluation = calculator.firstInput * calculator.secondInput) :
+    evaluation = (calculator.firstInput / calculator.secondInput);
+    return evaluation
+    }
 
 
 function submitEquation() {
-    let evaluation = 0;
-
-    let evaluate = () => {
-        calculator.operator === '+' ? (evaluation = +calculator.firstInput + +calculator.secondInput) :
-        calculator.operator === '-' ? (evaluation = calculator.firstInput - calculator.secondInput) :
-        calculator.operator === 'x' ? (evaluation = calculator.firstInput * calculator.secondInput) :
-        evaluation = (calculator.firstInput / calculator.secondInput)
-    }
-
-    evaluate()
+    calculator.answer = evaluate();
+    writeAnswer();
     console.log(`${calculator.firstInput} ${calculator.operator} ${calculator.secondInput}`)
-    console.log(evaluation)
+    console.log(calculator.answer)
     resetCalculator()
 }
 
 function resetCalculator() {
-    calculator.firstInput ? delete(calculator.firstInput) : 0;
-    calculator.secondInput ? delete(calculator.secondInput) : 0;
-    calculator.operator ? calculator.operator = null : 0;
+    delete(calculator.firstInput);
+    delete(calculator.secondInput);
+    calculator.operator = null;
+    calculator.input = 1;
 }
