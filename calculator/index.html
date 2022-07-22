@@ -3,26 +3,33 @@
     <head>
         <script src="main.js" defer></script>
         <title>Calculator</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="numbers">
-            <input type="button" value="0">
-            <input type="button" value="1">
-            <input type="button" value="2">
-            <input type="button" value="3">
-            <input type="button" value="4">
-            <input type="button" value="5">
-            <input type="button" value="6">
-            <input type="button" value="7">
-            <input type="button" value="8">
-            <input type="button" value="9">
-        </div>
-        <div class="operators">
-            <input type="button" id="operator" class="add" value="+">
-            <input type="button" id="operator" class="subtract" value="-">
-            <input type="button" id="operator" class="multiply" value="x">
-            <input type="button" id="operator" class="divide" value="/">
-            <input type="button" id="operator" class="equals" value="=">
+        <div class="container">
+            <div class="screen">
+                <p class="equation"></p>
+                <p class="answer"></p>
+            </div>
+            <div class="numbers">
+                <input type="button" value="0">
+                <input type="button" value="1">
+                <input type="button" value="2">
+                <input type="button" value="3">
+                <input type="button" value="4">
+                <input type="button" value="5">
+                <input type="button" value="6">
+                <input type="button" value="7">
+                <input type="button" value="8">
+                <input type="button" value="9">
+            </div>
+            <div class="operators">
+                <input type="button" id="operator" class="add" value="+">
+                <input type="button" id="operator" class="subtract" value="-">
+                <input type="button" id="operator" class="multiply" value="x">
+                <input type="button" id="operator" class="divide" value="/">
+                <input type="button" id="operator" class="equals" value="=">
+            </div>
         </div>
     </body>
 </html>
